@@ -1,4 +1,5 @@
 import { EXAMS } from "@/configs/exams";
+import Image from "next/image";
 import {
 	Sidebar,
 	SidebarContent,
@@ -10,12 +11,13 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "../shadcn-ui/sidebar";
+import Logo from "../Logo";
 
 export const AppSidebar = () => {
 	return (
 		<Sidebar>
-			<SidebarHeader>
-				<h2 className="text-lg font-semibold">Quiz Mint AI</h2>
+			<SidebarHeader className="flex items-center gap-3 px-4 py-3 border-b">
+				<Logo />
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup />

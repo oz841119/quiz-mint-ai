@@ -1,5 +1,9 @@
 # Quiz Mint AI
 
+## Screenshots
+
+![Quiz Mint AI Screenshot](./public/screen.png)
+
 ## Getting Started
 
 ### Prerequisites

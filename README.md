@@ -60,7 +60,7 @@ To add a new AI model to the project:
 1. Create a new file in `src/AIService/providers/` with your model name (e.g., `myModel.ts`)
 2. Implement the `AIServiceProvider` interface in your new file
 3. Add your model to the `providerMap` in `src/AIService/providerMap.ts`
-4. Add the required API key to your `.env.local` file
+4. Add the required API key to your `.env.local` file if it is used in your provider.
 
 Example:
 ```typescript
@@ -76,7 +76,7 @@ import { MyModelProvider } from './providers/myModel';
 
 export const providerMap = {
   // ... existing providers
-  myModel: new MyModelProvider(),
+  myModel: MyModelProvider,
 };
 
 // .env.local

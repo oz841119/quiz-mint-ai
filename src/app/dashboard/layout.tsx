@@ -1,19 +1,22 @@
-'use client';
-import { SidebarProvider, SidebarTrigger } from '@/components/shadcn-ui/sidebar';
-import { AppSidebar } from '@/components/AppSidebar';
+"use client";
+import {
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/components/shadcn-ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 export default function DashboardLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
-  );
+	return (
+		<SidebarProvider>
+			<AppSidebar />
+			<main>
+				<SidebarTrigger />
+				{children}
+			</main>
+		</SidebarProvider>
+	);
 }

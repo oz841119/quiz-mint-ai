@@ -1,9 +1,9 @@
 import { ExamProvider } from "./[examName]/context";
 
 export default function ExamLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return <ExamProvider>{children}</ExamProvider>;
+	return <ExamProvider>{children}</ExamProvider>;
 }

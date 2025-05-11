@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quiz Mint AI
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- Docker (Optional, for Docker-based setup)
+
+### Installation
+
+1. Clone repo
+```bash
+git clone https://github.com/oz841119/quiz-mint-ai.git
+cd quiz-mint-ai
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Configure environment variables
+```bash
+cp env.demo .env.local
+```
+Then modify the configurations in `.env.local` as needed.
+
+### Development
+
+You can run the development server in two ways:
+
+#### Option 1: Using Docker (Recommended)
 
 ```bash
+# Start development server
+docker compose up
+
+# Stop development server
+docker compose down
+```
+
+#### Option 2: Manual Setup
+
+```bash
+# Start development server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Adding New AI Models
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To add a new AI model to the project:
 
-## Learn More
+1. Create a new file in `src/AIService/providers/` with your model name (e.g., `myModel.ts`)
+2. Implement the `AIServiceProvider` interface in your new file
+3. Add your model to the `providerMap` in `src/AIService/providerMap.ts`
+4. Add the required API key to your `.env.local` file
 
-To learn more about Next.js, take a look at the following resources:
+Example:
+```typescript
+// src/AIService/providers/myModel.ts
+import { AIServiceProvider } from '../types';
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+export class MyModelProvider implements AIServiceProvider {
+  // Implement required methods
+}
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+// src/AIService/providerMap.ts
+import { MyModelProvider } from './providers/myModel';
 
-## Deploy on Vercel
+export const providerMap = {
+  // ... existing providers
+  myModel: new MyModelProvider(),
+};
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+// .env.local
+MY_MODEL_API_KEY=your_api_key_here
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Using Models in Pages
+
+To use a model in your pages:
+
+1. Add your model to the `MODELS` constant in `src/configs/models.ts`
+2. The model will then be available in the model selection dropdown

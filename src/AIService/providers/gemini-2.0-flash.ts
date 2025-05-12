@@ -4,12 +4,12 @@ import { createQuizPrompt } from "../utils";
 export class Gemini20FlashProvider implements AIServiceProvider {
 	private key: string;
 	constructor({
-		key = process.env.GEMINI_2_0_FLASH_AIP_KEY,
+		key = process.env.GOOGLE_GEMINI_API_KEY,
 	}: {
 		key?: string;
 	}) {
 		if (!key) {
-			throw new Error("GEMINI_2_0_FLASH_AIP_KEY is not set");
+			throw new Error("GOOGLE_GEMINI_API_KEY is not set");
 		}
 		this.key = key;
 	}

@@ -2,9 +2,9 @@ import { AIService } from "@/AIService";
 import { NextResponse } from "next/server";
 export async function POST(request: Request) {
 	try {
-		const { examName, language } = await request.json();
+		const { examName, language, model } = await request.json();
 		const createAIService = new AIService({
-			model: "gemini-2.0-flash",
+			model
 		});
 		const quiz = await createAIService.createQuiz({
 			examName,

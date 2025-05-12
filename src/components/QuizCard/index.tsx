@@ -6,7 +6,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../shadcn-ui/card";
-
+import { cn } from "@/lib/utils";
 type Quiz = {
 	question: string;
 	options: string[];
@@ -16,11 +16,13 @@ type Quiz = {
 };
 export const QuizCard = ({
 	quiz,
+	className,
 }: {
 	quiz: Quiz;
+	className?: string;
 }) => {
 	return (
-		<Card className="hover:shadow-md transition-shadow duration-200">
+		<Card className={cn("hover:shadow-md transition-shadow duration-200", className)}>
 			<CardHeader className="pb-2">
 				<div className="flex justify-between gap-2">
 					<div className="flex gap-2 items-center">

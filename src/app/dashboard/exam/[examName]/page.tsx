@@ -64,7 +64,7 @@ export default function ExamPage() {
 		<div className="space-y-6">
 			<div className="flex items-center gap-4">
 				<Select value={selectedModel} onValueChange={setSelectedModel}>
-					<SelectTrigger className="w-48">
+					<SelectTrigger className="w-80">
 						<SelectValue placeholder="選擇模型" />
 					</SelectTrigger>
 					<SelectContent>
@@ -107,7 +107,7 @@ export default function ExamPage() {
 				</div>
 			)}
 			{quizList?.map((quiz) => (
-				<QuizCard key={quiz.id} quiz={quiz} />
+				<QuizCard key={quiz.id} quiz={quiz} className="w-full" />
 			))}
 		</div>
 	);

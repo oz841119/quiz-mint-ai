@@ -1,3 +1,5 @@
+export { createAIProviderClass } from "./createOpenWebUIProviderClass";
+
 export const createQuizPrompt = ({
 	examName,
 	language,

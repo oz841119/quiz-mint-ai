@@ -1,4 +1,4 @@
-import { createAIProviderClass } from "../utils";
-export const GPT4OProvider = createAIProviderClass({
+import { createOpenWebUIProviderClass } from "../utils";
+export const GPT4OProvider = createOpenWebUIProviderClass({
 	model: "gpt-4o",
 });

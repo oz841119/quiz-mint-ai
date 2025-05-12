@@ -1,5 +1,5 @@
-export { createAIProviderClass } from "./createOpenWebUIProviderClass";
-
+export { createOpenWebUIProviderClass } from "./createOpenWebUIProviderClass";
+export { createGoogleGeminiProviderClass } from "./createGoogleGeminiProviderClass";
 export const createQuizPrompt = ({
 	examName,
 	language,

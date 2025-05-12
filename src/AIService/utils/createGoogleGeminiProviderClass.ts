@@ -1,16 +1,16 @@
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
 
-export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
+export const createGoogleGeminiProviderClass = ({model}: {model: string}) => {
   return class implements AIServiceProvider {
     private key: string;
     constructor({
-      key = process.env.OPEN_WEB_UI_API_KEY,
+      key = process.env.GOOGLE_GEMINI_API_KEY,
     }: {
       key?: string;
     }) {
       if (!key) {
-        throw new Error("OPEN_WEB_UI_API_KEY is not set");
+        throw new Error("Google Gemini API Key is not set");
       }
       this.key = key;
     }
@@ -27,27 +27,31 @@ export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
           language,
         });
         const resp = await fetch(
-          `${process.env.OPEN_WEB_UI_API_BASE_URL}/api/chat/completions`,
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${this.key}`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${this.key}`,
             },
             body: JSON.stringify({
-              "model": model,
-              "messages": [
+              contents: [
                 {
-                  "role": "user",
-                    "content": prompt
-              }
-              ]
+                  parts: [
+                    {
+                      text: prompt,
+                    },
+                  ],
+                },
+              ],
+              generationConfig: {
+                responseMimeType: "application/json",
+              },
             }),
           },
         );
         if (resp.ok) {
           const data = await resp.json();
-          const quizText = JSON.parse(data.choices[0].message.content);
+          const quizText = JSON.parse(data.candidates[0].content.parts[0].text);
           const quiz = z
             .object({
               question: z.string(),

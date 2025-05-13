@@ -19,7 +19,7 @@ export const ExamModeSwitch = ({
 			size="sm"
 			className={cn(
 				"text-xs cursor-pointer",
-				isExamMode 
+				isExamMode
 					? "text-gray-500 hover:text-blue-500" 
 					: "bg-green-50 text-green-700 hover:bg-green-100",
 				className
@@ -28,13 +28,13 @@ export const ExamModeSwitch = ({
 		>
 			{isExamMode ? (
 				<>
-					<BookOpenCheck className="h-4 w-4 mr-1.5" />
-					Study Mode
-				</>
-			) : (
-				<>
 					<BookOpen className="h-4 w-4 mr-1.5" />
 					Exam Mode
+				</> 
+			) : (
+				<>
+					<BookOpenCheck className="h-4 w-4 mr-1.5" />
+					Study Mode
 				</>
 			)}
 		</Button>

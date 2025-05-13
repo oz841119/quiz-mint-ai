@@ -1,14 +1,13 @@
 "use client";
-import { useExamContext } from "./context";
-
+import { useExamsContext } from "@/contexts/examsContext";
 export default function ExamLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const { exam } = useExamContext();
+	const { exam } = useExamsContext();
 	return (
-		<div className="p-4">
+		<div>
 			<h1 className="text-2xl font-bold mb-4">{exam?.pageLabel}</h1>
 			{children}
 		</div>

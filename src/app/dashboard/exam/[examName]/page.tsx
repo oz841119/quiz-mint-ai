@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/shadcn-ui/button";
 import { Plus } from "lucide-react";
-import { useExamContext } from "./context";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { QuizCard } from "@/components/QuizCard";
@@ -16,8 +15,7 @@ import {
 import { MODEL_LANGUAGES } from "@/configs/modelLanguages";
 import { MODELS } from "@/configs/models";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-
+import { useExamsContext } from "@/contexts/examsContext";
 type Quiz = {
 	question: string;
 	options: string[];
@@ -29,7 +27,7 @@ type Quiz = {
 };
 
 export default function ExamPage() {
-	const { exam } = useExamContext();
+	const { exam } = useExamsContext();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [quizList, setQuizList] = useState<Quiz[] | null>(null);
@@ -67,8 +65,6 @@ export default function ExamPage() {
 	return (
 		<div className="space-y-6">
 			<div className="flex items-center gap-4">
-				<div className="flex items-center space-x-2">
-				</div>
 				<Select value={selectedModel} onValueChange={setSelectedModel}>
 					<SelectTrigger className="w-80 cursor-pointer">
 						<SelectValue placeholder="Select Model" />

@@ -9,6 +9,8 @@ import {
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Button } from "../shadcn-ui/button";
+import { motion } from "framer-motion";
+import { Collapser } from "../Collapser";
 
 type Quiz = {
 	question: string;
@@ -46,9 +48,12 @@ export const QuizCard = ({
 			<CardContent className="space-y-4">
 				<div className="space-y-2">
 					{quiz.options.map((option, index) => (
-						<div
+						<motion.div
 							key={option}
-							className={`p-2.5 rounded-md border text-sm transition-colors duration-200 ${
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.3 }}
+							className={`p-2.5 rounded-md border text-sm ${
 								!isExamMode && quiz.answers.includes(index)
 									? "bg-green-50 border-green-200 text-green-700"
 									: "bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100"
@@ -56,21 +61,27 @@ export const QuizCard = ({
 						>
 							<div className="flex items-center">
 								{!isExamMode && quiz.answers.includes(index) && (
-									<CheckCircle2 className="h-4 w-4 mr-2 text-green-500" />
+									<motion.div
+										initial={{ scale: 0 }}
+										animate={{ scale: 1 }}
+										transition={{ type: "spring", stiffness: 200, damping: 10 }}
+									>
+										<CheckCircle2 className="h-4 w-4 mr-2 text-green-500" />
+									</motion.div>
 								)}
 								{option}
 							</div>
-						</div>
+						</motion.div>
 					))}
 				</div>
-				{!isExamMode && (
-					<div className="mt-4 p-3 bg-gray-50 rounded-md">
-						<h3 className="text-xs font-medium text-gray-500 mb-1.5">解釋</h3>
-						<p className="text-sm text-gray-600 leading-relaxed">
-							{quiz.explanation}
-						</p>
-					</div>
-				)}
+					<Collapser isOpen={!isExamMode}>
+						<div className="mt-4 p-3 bg-gray-50 rounded-md">
+							<h3 className="text-xs font-medium text-gray-500 mb-1.5">解釋</h3>
+							<p className="text-sm text-gray-600 leading-relaxed">
+								{quiz.explanation}
+							</p>
+						</div>
+					</Collapser>
 				<div className="flex justify-end pt-2 border-t">
 					<Button
 						variant="ghost"

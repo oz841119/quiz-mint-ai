@@ -2,16 +2,17 @@ import { AIService } from "@/AIService";
 import { NextResponse } from "next/server";
 export async function POST(request: Request) {
 	try {
-		const { examName, language, model } = await request.json();
-		const createAIService = new AIService({
-			model
+		const { examName, language, providerName } = await request.json();
+		const aiService = new AIService({
+			providerName,
 		});
-		const quiz = await createAIService.createQuiz({
+		console.log(aiService.modelName);
+		const quiz = await aiService.createQuiz({
 			examName,
 			language,
 		});
 		return NextResponse.json({
-			model: createAIService.model,
+			model: aiService.modelName,
 			id: crypto.randomUUID(),
 			...quiz,
 		});

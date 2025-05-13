@@ -6,6 +6,7 @@ type Quiz = {
 	language: string;
 };
 type AIServiceProvider = {
+	modelName: string;
 	askQuiz: ({
 		examName,
 		language,

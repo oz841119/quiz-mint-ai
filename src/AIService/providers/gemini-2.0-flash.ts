@@ -3,6 +3,7 @@ import { createQuizPrompt } from "../utils";
 
 export class Gemini20FlashProvider implements AIServiceProvider {
 	private key: string;
+	public modelName = "gemini-2.0-flash";
 	constructor({
 		key = process.env.GOOGLE_GEMINI_API_KEY,
 	}: {

@@ -3,6 +3,7 @@ import { createQuizPrompt } from "./index";
 
 export const createGoogleGeminiProviderClass = ({model}: {model: string}) => {
   return class implements AIServiceProvider {
+    public modelName = model;
     private key: string;
     constructor({
       key = process.env.GOOGLE_GEMINI_API_KEY,

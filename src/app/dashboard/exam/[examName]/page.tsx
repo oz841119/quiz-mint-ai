@@ -47,7 +47,7 @@ export default function ExamPage() {
 				body: JSON.stringify({
 					examName: exam?.name,
 					language: selectedLanguage,
-					model: selectedModel,
+					providerName: selectedModel,
 				}),
 			});
 			if (!response.ok) {

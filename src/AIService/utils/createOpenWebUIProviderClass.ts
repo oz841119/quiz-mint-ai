@@ -3,6 +3,7 @@ import { createQuizPrompt } from "./index";
 
 export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
   return class implements AIServiceProvider {
+    public modelName = model;
     private key: string;
     constructor({
       key = process.env.OPEN_WEB_UI_API_KEY,

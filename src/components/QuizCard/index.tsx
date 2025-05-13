@@ -8,9 +8,9 @@ import {
 } from "../shadcn-ui/card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Button } from "../shadcn-ui/button";
 import { motion } from "framer-motion";
 import { Collapser } from "../Collapser";
+import { ExamModeSwitch } from "../ExamModeSwitch";
 
 type Quiz = {
 	question: string;
@@ -76,31 +76,17 @@ export const QuizCard = ({
 				</div>
 					<Collapser isOpen={!isExamMode}>
 						<div className="mt-4 p-3 bg-gray-50 rounded-md">
-							<h3 className="text-xs font-medium text-gray-500 mb-1.5">解釋</h3>
+							<h3 className="text-xs font-medium text-gray-500 mb-1.5">Explanation</h3>
 							<p className="text-sm text-gray-600 leading-relaxed">
 								{quiz.explanation}
 							</p>
 						</div>
 					</Collapser>
 				<div className="flex justify-end pt-2 border-t">
-					<Button
-						variant="ghost"
-						size="sm"
-						className="text-xs text-gray-500 hover:text-blue-500 cursor-pointer"
-						onClick={() => setIsExamMode(!isExamMode)}
-					>
-						{isExamMode ? (
-							<>
-								<BookOpenCheck className="h-4 w-4 mr-1.5" />
-								切換到學習模式
-							</>
-						) : (
-							<>
-								<BookOpen className="h-4 w-4 mr-1.5" />
-								切換到考試模式
-							</>
-						)}
-					</Button>
+					<ExamModeSwitch
+						isExamMode={isExamMode}
+						onToggle={() => setIsExamMode(!isExamMode)}
+					/>
 				</div>
 			</CardContent>
 		</Card>

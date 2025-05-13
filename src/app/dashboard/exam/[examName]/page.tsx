@@ -1,10 +1,11 @@
 "use client";
 import { Button } from "@/components/shadcn-ui/button";
-import { BookOpen, BookOpenCheck, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useExamContext } from "./context";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { QuizCard } from "@/components/QuizCard";
+import { ExamModeSwitch } from "@/components/ExamModeSwitch";
 import {
 	Select,
 	SelectContent,
@@ -15,6 +16,7 @@ import {
 import { MODEL_LANGUAGES } from "@/configs/modelLanguages";
 import { MODELS } from "@/configs/models";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type Quiz = {
 	question: string;
@@ -51,7 +53,7 @@ export default function ExamPage() {
 				}),
 			});
 			if (!response.ok) {
-				throw new Error("生成題目失敗，請重新再試。");
+				throw new Error("Failed to generate quiz, please try again.");
 			}
 			const data = await response.json();
 			setQuizList([data, ...(quizList || [])]);
@@ -69,7 +71,7 @@ export default function ExamPage() {
 				</div>
 				<Select value={selectedModel} onValueChange={setSelectedModel}>
 					<SelectTrigger className="w-80 cursor-pointer">
-						<SelectValue placeholder="選擇模型" />
+						<SelectValue placeholder="Select Model" />
 					</SelectTrigger>
 					<SelectContent>
 						{MODELS.map((model) => (
@@ -81,7 +83,7 @@ export default function ExamPage() {
 				</Select>
 				<Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
 					<SelectTrigger className="w-48 cursor-pointer">
-						<SelectValue placeholder="選擇語言" />
+						<SelectValue placeholder="Select Language" />
 					</SelectTrigger>
 					<SelectContent>
 						{MODEL_LANGUAGES.map((lang) => (
@@ -91,24 +93,10 @@ export default function ExamPage() {
 						))}
 					</SelectContent>
 				</Select>
-				<Button
-						variant="ghost"
-						size="sm"
-						className="text-xs text-gray-500 hover:text-blue-500 cursor-pointer"
-						onClick={() => setIsExamMode(!isExamMode)}
-					>
-						{isExamMode ? (
-							<>
-								<BookOpenCheck className="h-4 w-4 mr-1.5" />
-								學習模式
-							</>
-						) : (
-							<>
-								<BookOpen className="h-4 w-4 mr-1.5" />
-								考試模式
-							</>
-						)}
-					</Button>
+				<ExamModeSwitch
+					isExamMode={isExamMode}
+					onToggle={() => setIsExamMode(!isExamMode)}
+				/>
 				<Button
 					onClick={createQuiz}
 					size="sm"
@@ -120,7 +108,7 @@ export default function ExamPage() {
 					) : (
 						<Plus className="h-4 w-4" />
 					)}
-					創建題目
+					Create Quiz
 				</Button>
 			</div>
 			{error && (

@@ -20,7 +20,9 @@ export const AppSidebar = () => {
 	return (
 		<Sidebar>
 			<SidebarHeader className="flex items-center gap-3 px-4 py-3 border-b">
-				<Logo />
+				<Link href="/">
+					<Logo />
+				</Link>
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>

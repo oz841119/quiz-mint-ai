@@ -11,7 +11,8 @@ import Logo from "../Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { User } from "lucide-react";
+import { User, Plus } from "lucide-react";
+import { Button } from "../shadcn-ui/button";
 
 export const AppSidebar = () => {
 	const pathname = usePathname();
@@ -23,19 +24,26 @@ export const AppSidebar = () => {
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>
-					<SidebarGroupLabel>EXAM</SidebarGroupLabel>
-						<ul className="flex flex-col">
-							{EXAMS.map((exam) => (
-								<li
-									key={exam.routeParam}
-									className={cn("text-sm px-2 rounded-md", isActive(`/dashboard/exam/${exam.routeParam}`) ? "bg-foreground/10" : "hover:bg-foreground/5")}
-								>
-									<Link href={`/dashboard/exam/${exam.routeParam}`} className="block py-2">
-										{exam.menuLabel}
-									</Link>
-								</li>
-							))}
-						</ul>
+					<SidebarGroupLabel>
+						<div className="flex items-center justify-between w-full">
+							<span>EXAM</span>
+							<Button variant="ghost" size="icon" className="h-6 w-6 cursor-pointer">
+								<Plus className="h-4 w-4" />
+							</Button>
+						</div>
+					</SidebarGroupLabel>
+					<ul className="flex flex-col">
+						{EXAMS.map((exam) => (
+							<li
+								key={exam.routeParam}
+								className={cn("text-sm px-2 rounded-md", isActive(`/dashboard/exam/${exam.routeParam}`) ? "bg-foreground/10" : "hover:bg-foreground/5")}
+							>
+								<Link href={`/dashboard/exam/${exam.routeParam}`} className="block py-2">
+									{exam.menuLabel}
+								</Link>
+							</li>
+						))}
+					</ul>
 				</SidebarGroup>
 			</SidebarContent>
 			<SidebarFooter className="border-t">

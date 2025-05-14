@@ -75,6 +75,7 @@ export default function ExamPage() {
                 key={model.value}
                 value={model.value}
                 className="cursor-pointer"
+                disabled={model.disabled}
               >
                 {model.label}
               </SelectItem>

@@ -1,13 +1,13 @@
 export { createOpenWebUIProviderClass } from "./createOpenWebUIProviderClass";
 export { createGoogleGeminiProviderClass } from "./createGoogleGeminiProviderClass";
 export const createQuizPrompt = ({
-	examName,
-	language,
+  examName,
+  language,
 }: {
-	examName: string;
-	language: string;
+  examName: string;
+  language: string;
 }) => {
-	return `
+  return `
     Please generate 1 realistic multiple-choice question about ${examName}, similar in style and difficulty to actual exam questions or past exam papers.
     The question can be either single-choice (with only one correct answer) or multiple-choice (with multiple correct answers).
     Return it in the following JSON format:

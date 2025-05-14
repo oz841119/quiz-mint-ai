@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
 
-export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
+export const createOpenWebUIProviderClass = ({ model }: { model: string }) => {
   return class implements AIServiceProvider {
     public modelName = model;
     private key: string;
@@ -33,16 +33,16 @@ export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${this.key}`,
+              Authorization: `Bearer ${this.key}`,
             },
             body: JSON.stringify({
-              "model": model,
-              "messages": [
+              model: model,
+              messages: [
                 {
-                  "role": "user",
-                    "content": prompt
-              }
-              ]
+                  role: "user",
+                  content: prompt,
+                },
+              ],
             }),
           },
         );
@@ -66,5 +66,5 @@ export const createOpenWebUIProviderClass = ({model}: {model: string}) => {
         throw error;
       }
     }
-  }
-}
+  };
+};

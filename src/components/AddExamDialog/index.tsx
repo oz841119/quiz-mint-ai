@@ -34,10 +34,9 @@ export const AddExamDialog = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     // Only allow lowercase letters, numbers, and hyphens for routeParam
-    if (name === 'routeParam') {
-      const validValue = value.replace(/[^a-z0-9-]/g, '');
+    if (name === "routeParam") {
+      const validValue = value.replace(/[^a-z0-9-]/g, "");
       setFormData((prev) => ({ ...prev, [name]: validValue }));
       // If invalid characters were entered, update the input value
       if (validValue !== value) {
@@ -92,7 +91,8 @@ export const AddExamDialog = ({
               pattern="^[a-z0-9-]+$"
             />
             <p className="text-xs text-muted-foreground">
-              Used in URLs. Can only contain lowercase letters, numbers, and hyphens.
+              Used in URLs. Can only contain lowercase letters, numbers, and
+              hyphens.
             </p>
           </div>
           <div className="space-y-2">

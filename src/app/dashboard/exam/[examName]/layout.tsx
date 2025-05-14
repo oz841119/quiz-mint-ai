@@ -1,15 +1,15 @@
 "use client";
 import { useExamsContext } from "@/contexts/examsContext";
 export default function ExamLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	const { exam } = useExamsContext();
-	return (
-		<div>
-			<h1 className="text-2xl font-bold mb-4">{exam?.pageLabel}</h1>
-			{children}
-		</div>
-	);
+  const { exam } = useExamsContext();
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4">{exam?.pageLabel}</h1>
+      {children}
+    </div>
+  );
 }

@@ -1,7 +1,9 @@
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
 
-export const createGoogleGeminiProviderClass = ({model}: {model: string}) => {
+export const createGoogleGeminiProviderClass = ({
+  model,
+}: { model: string }) => {
   return class implements AIServiceProvider {
     public modelName = model;
     private key: string;
@@ -70,5 +72,5 @@ export const createGoogleGeminiProviderClass = ({model}: {model: string}) => {
         throw error;
       }
     }
-  }
-}
+  };
+};

@@ -20,9 +20,9 @@ export const ExamModeSwitch = ({
 			className={cn(
 				"text-xs cursor-pointer",
 				isExamMode
-					? "text-gray-500 hover:text-blue-500" 
+					? "text-gray-500 hover:text-blue-500"
 					: "bg-green-50 text-green-700 hover:bg-green-100",
-				className
+				className,
 			)}
 			onClick={onToggle}
 		>
@@ -30,7 +30,7 @@ export const ExamModeSwitch = ({
 				<>
 					<BookOpen className="h-4 w-4 mr-1.5" />
 					Exam Mode
-				</> 
+				</>
 			) : (
 				<>
 					<BookOpenCheck className="h-4 w-4 mr-1.5" />

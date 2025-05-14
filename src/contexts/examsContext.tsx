@@ -18,7 +18,7 @@ type ExamsContextType = {
 
 export const ExamsContext = createContext<ExamsContextType>({
 	exam: null,
-	addExam: () => { },
+	addExam: () => {},
 	exams: [],
 });
 

@@ -26,7 +26,8 @@ export const EXAMS = [
 	{
 		name: "SAP Certified Professional - Developer - SAP Commerce Cloud (P_C4H34_2411)",
 		routeParam: "pc4h342411",
-		pageLabel: "SAP Certified Professional - Developer - SAP Commerce Cloud (P_C4H34_2411)",
+		pageLabel:
+			"SAP Certified Professional - Developer - SAP Commerce Cloud (P_C4H34_2411)",
 		menuLabel: "SAP (P_C4H34_2411)",
 	},
 	{
@@ -64,5 +65,5 @@ export const EXAMS = [
 		routeParam: "retail-services",
 		pageLabel: "丙級門市服務技術士",
 		menuLabel: "丙級門市服務技術士",
-	}
+	},
 ];

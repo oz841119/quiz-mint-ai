@@ -31,7 +31,12 @@ export const QuizCard = ({
 }) => {
 	const [isExamMode, setIsExamMode] = useState(defaultIsExamMode);
 	return (
-		<Card className={cn("hover:shadow-md transition-shadow duration-200", className)}>
+		<Card
+			className={cn(
+				"hover:shadow-md transition-shadow duration-200",
+				className,
+			)}
+		>
 			<CardHeader className="pb-2">
 				<div className="flex justify-between gap-2">
 					<div className="flex gap-2 items-center">
@@ -74,14 +79,16 @@ export const QuizCard = ({
 						</motion.div>
 					))}
 				</div>
-					<Collapser isOpen={!isExamMode}>
-						<div className="mt-4 p-3 bg-gray-50 rounded-md">
-							<h3 className="text-xs font-medium text-gray-500 mb-1.5">Explanation</h3>
-							<p className="text-sm text-gray-600 leading-relaxed">
-								{quiz.explanation}
-							</p>
-						</div>
-					</Collapser>
+				<Collapser isOpen={!isExamMode}>
+					<div className="mt-4 p-3 bg-gray-50 rounded-md">
+						<h3 className="text-xs font-medium text-gray-500 mb-1.5">
+							Explanation
+						</h3>
+						<p className="text-sm text-gray-600 leading-relaxed">
+							{quiz.explanation}
+						</p>
+					</div>
+				</Collapser>
 				<div className="flex justify-end pt-2 border-t">
 					<ExamModeSwitch
 						isExamMode={isExamMode}

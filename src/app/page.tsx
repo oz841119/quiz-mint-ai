@@ -33,8 +33,14 @@ export default function Home() {
 									AI-powered quizzes to enhance learning efficiency
 								</p>
 								<div className="text-sm sm:text-md text-gray-600 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-1 justify-center lg:justify-start max-w-xl sm:max-w-2xl mx-auto lg:mx-0 mt-3">
-									<span className="flex items-center"><span className="mr-1 sm:mr-2 text-blue-600">🌐</span> Multilingual Support</span>
-									<span className="flex items-center"><span className="mr-1 sm:mr-2 text-purple-600">🤖</span> AI-Generated Questions, Answers & Explanations</span>
+									<span className="flex items-center">
+										<span className="mr-1 sm:mr-2 text-blue-600">🌐</span>{" "}
+										Multilingual Support
+									</span>
+									<span className="flex items-center">
+										<span className="mr-1 sm:mr-2 text-purple-600">🤖</span>{" "}
+										AI-Generated Questions, Answers & Explanations
+									</span>
 								</div>
 							</div>
 							<div className="flex justify-center lg:justify-start">

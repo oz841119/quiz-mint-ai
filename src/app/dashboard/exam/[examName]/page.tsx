@@ -71,7 +71,11 @@ export default function ExamPage() {
 					</SelectTrigger>
 					<SelectContent>
 						{MODELS.map((model) => (
-							<SelectItem key={model.value} value={model.value} className="cursor-pointer">
+							<SelectItem
+								key={model.value}
+								value={model.value}
+								className="cursor-pointer"
+							>
 								{model.label}
 							</SelectItem>
 						))}
@@ -83,7 +87,11 @@ export default function ExamPage() {
 					</SelectTrigger>
 					<SelectContent>
 						{MODEL_LANGUAGES.map((lang) => (
-							<SelectItem key={lang.value} value={lang.value} className="cursor-pointer">
+							<SelectItem
+								key={lang.value}
+								value={lang.value}
+								className="cursor-pointer"
+							>
 								{lang.label}
 							</SelectItem>
 						))}
@@ -121,7 +129,11 @@ export default function ExamPage() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.3 }}
 					>
-						<QuizCard quiz={quiz} className="w-full" defaultIsExamMode={isExamMode} />
+						<QuizCard
+							quiz={quiz}
+							className="w-full"
+							defaultIsExamMode={isExamMode}
+						/>
 					</motion.div>
 				))}
 			</AnimatePresence>

@@ -1,6 +1,8 @@
 import { providerMap } from "./config";
 
-const isExistProvider = (providerName: string): providerName is keyof typeof providerMap => {
+const isExistProvider = (
+	providerName: string,
+): providerName is keyof typeof providerMap => {
 	return providerName in providerMap;
 };
 

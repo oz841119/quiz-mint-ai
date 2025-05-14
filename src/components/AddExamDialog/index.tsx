@@ -20,37 +20,21 @@ export const AddExamDialog = ({
   onOpenChange: (open: boolean) => void;
   onSubmit: (exam: {
     name: string;
-    routeParam: string;
-    pageLabel: string;
-    menuLabel: string;
   }) => void;
 }) => {
   const [formData, setFormData] = useState({
     name: "",
-    routeParam: "",
-    pageLabel: "",
-    menuLabel: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Only allow lowercase letters, numbers, and hyphens for routeParam
-    if (name === "routeParam") {
-      const validValue = value.replace(/[^a-z0-9-]/g, "");
-      setFormData((prev) => ({ ...prev, [name]: validValue }));
-      // If invalid characters were entered, update the input value
-      if (validValue !== value) {
-        e.target.value = validValue;
-      }
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
-    setFormData({ name: "", routeParam: "", pageLabel: "", menuLabel: "" });
+    setFormData({ name: "" });
     onOpenChange(false);
   };
 
@@ -71,52 +55,8 @@ export const AddExamDialog = ({
             <Input
               id="name"
               name="name"
-              placeholder="e.g., AWS Certified Solutions Architect Associate"
+              placeholder="e.g., Programming Certification Exam"
               value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="routeParam" className="text-sm font-medium">
-              Route Parameter
-            </label>
-            <Input
-              id="routeParam"
-              name="routeParam"
-              placeholder="e.g., saac03"
-              value={formData.routeParam}
-              onChange={handleChange}
-              required
-              pattern="^[a-z0-9-]+$"
-            />
-            <p className="text-xs text-muted-foreground">
-              Used in URLs. Can only contain lowercase letters, numbers, and
-              hyphens.
-            </p>
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="pageLabel" className="text-sm font-medium">
-              Page Label
-            </label>
-            <Input
-              id="pageLabel"
-              name="pageLabel"
-              placeholder="Label shown on the page"
-              value={formData.pageLabel}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="menuLabel" className="text-sm font-medium">
-              Menu Label
-            </label>
-            <Input
-              id="menuLabel"
-              name="menuLabel"
-              placeholder="Label shown in the menu"
-              value={formData.menuLabel}
               onChange={handleChange}
               required
             />
@@ -129,7 +69,7 @@ export const AddExamDialog = ({
             >
               Cancel
             </Button>
-            <Button type="submit">Add Exam</Button>
+            <Button type="submit">Add</Button>
           </DialogFooter>
         </form>
       </DialogContent>

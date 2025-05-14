@@ -5,6 +5,7 @@ import {
 } from "@/components/shadcn-ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { ExamProvider } from "@/contexts/examsContext";
+import { StorageProvider } from "@/contexts/storageContext";
 
 export default function DashboardLayout({
   children,
@@ -12,14 +13,16 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ExamProvider>
-      <SidebarProvider>
-        <AppSidebar />
-        <main className="flex-1">
-          <SidebarTrigger />
-          {children}
-        </main>
-      </SidebarProvider>
-    </ExamProvider>
+    <StorageProvider>
+      <ExamProvider>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="flex-1">
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
+      </ExamProvider>
+    </StorageProvider>
   );
 }

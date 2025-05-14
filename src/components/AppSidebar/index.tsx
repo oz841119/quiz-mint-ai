@@ -1,4 +1,3 @@
-import { EXAMS } from "@/configs/exams";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +10,7 @@ import Logo from "../Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { User, Plus } from "lucide-react";
+import { User, Plus, LayoutDashboard } from "lucide-react";
 import { Button } from "../shadcn-ui/button";
 import { AddExamDialog } from "../AddExamDialog";
 import { useState } from "react";
@@ -19,17 +18,18 @@ import { useExamsContext } from "@/contexts/examsContext";
 export const AppSidebar = () => {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
-  const [isAddExamDialogOpen, setIsAddExamDialogOpen] = useState(true);
+  const [isAddExamDialogOpen, setIsAddExamDialogOpen] = useState(false);
   const { exams, addExam } = useExamsContext();
   const handleAddExam = (exam: {
     name: string;
-    routeParam: string;
-    pageLabel: string;
-    menuLabel: string;
   }) => {
-    addExam(exam);
+    addExam({
+      name: exam.name,
+      routeParam: crypto.randomUUID(),
+      pageLabel: exam.name,
+      menuLabel: exam.name,
+    });
   };
-
   return (
     <>
       <Sidebar>
@@ -42,7 +42,33 @@ export const AppSidebar = () => {
           <SidebarGroup>
             <SidebarGroupLabel>
               <div className="flex items-center justify-between w-full">
-                <span>EXAM</span>
+                <span>Main Menu</span>
+              </div>
+            </SidebarGroupLabel>
+            <ul className="flex flex-col">
+              <li
+                className={cn(
+                  "text-sm px-2 rounded-md",
+                  isActive("/dashboard")
+                    ? "bg-foreground/10"
+                    : "hover:bg-foreground/5",
+                )}
+              >
+                <Link
+                  href="/dashboard"
+                  className="py-2 flex items-center gap-2"
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Dashboard</span>
+                </Link>
+              </li>
+            </ul>
+          </SidebarGroup>
+
+          <SidebarGroup>
+            <SidebarGroupLabel>
+              <div className="flex items-center justify-between w-full">
+                <span>Exams</span>
                 <Button
                   variant="ghost"
                   size="icon"

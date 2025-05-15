@@ -11,6 +11,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Collapser } from "../Collapser";
 import { ExamModeSwitch } from "../ExamModeSwitch";
+import { PingAnimation } from "../PingAnimation";
 
 type Quiz = {
   question: string;
@@ -89,11 +90,14 @@ export const QuizCard = ({
             </p>
           </div>
         </Collapser>
-        <div className="flex justify-end pt-2 border-t">
+        <div className="flex justify-end pt-2 border-t relative">
           <ExamModeSwitch
             isExamMode={isExamMode}
             onToggle={() => setIsExamMode(!isExamMode)}
           />
+          {isExamMode && (
+            <PingAnimation className="absolute right-0 top-0 translate-y-1/2 translate-x-1/2" />
+          )}
         </div>
       </CardContent>
     </Card>

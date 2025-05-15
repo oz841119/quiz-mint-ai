@@ -1,17 +1,17 @@
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
-
-export const createOpenWebUIProviderClass = ({ model }: { model: string }) => {
+import OpenAI from "openai";
+export const createOpenAIProvider = ({ modelName }: { modelName: string }) => {
   return class implements AIServiceProvider {
-    public modelName = model;
+    public modelName = modelName;
     private key: string;
     constructor({
-      key = process.env.OPEN_WEB_UI_API_KEY,
+      key = process.env.MODEL_KEY,
     }: {
       key?: string;
     }) {
       if (!key) {
-        throw new Error("OPEN_WEB_UI_API_KEY is not set");
+        throw new Error("MODEL_KEY is not set");
       }
       this.key = key;
     }
@@ -27,28 +27,20 @@ export const createOpenWebUIProviderClass = ({ model }: { model: string }) => {
           examName,
           language,
         });
-        const resp = await fetch(
-          `${process.env.OPEN_WEB_UI_API_BASE_URL}/api/chat/completions`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${this.key}`,
-            },
-            body: JSON.stringify({
-              model: model,
-              messages: [
-                {
-                  role: "user",
-                  content: prompt,
-                },
-              ],
-            }),
-          },
-        );
-        if (resp.ok) {
-          const data = await resp.json();
-          const quizText = JSON.parse(data.choices[0].message.content);
+        const openAiClient = new OpenAI({
+          apiKey: this.key,
+          baseURL: process.env.OPEN_AI_BASE_URL,
+        });
+        const response = await openAiClient.chat.completions.create({
+          model: modelName,
+          messages: [{ role: "user", content: prompt }],
+        });
+
+        if (response.choices[0].message.content) {
+          const cleaned = response.choices[0].message.content
+            .replace(/```json|```/g, "")
+            .trim();
+          const quizText = JSON.parse(cleaned);
           const quiz = z
             .object({
               question: z.string(),
@@ -60,7 +52,7 @@ export const createOpenWebUIProviderClass = ({ model }: { model: string }) => {
             .parse(quizText);
           return quiz;
         }
-        throw resp;
+        throw new Error("No quiz found");
       } catch (error) {
         console.error(error);
         throw error;

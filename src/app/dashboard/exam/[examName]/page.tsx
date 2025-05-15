@@ -47,7 +47,7 @@ export default function ExamPage() {
         body: JSON.stringify({
           examName: exam?.name,
           language: selectedLanguage,
-          providerName: selectedModel,
+          modelName: selectedModel,
         }),
       });
       if (!response.ok) {
@@ -75,7 +75,6 @@ export default function ExamPage() {
                 key={model.value}
                 value={model.value}
                 className="cursor-pointer"
-                disabled={model.disabled}
               >
                 {model.label}
               </SelectItem>

@@ -6,7 +6,11 @@ export class IndexedDBStorageService implements IStorageService {
   private dbPromise: Promise<IDBDatabase> | null = null;
 
   constructor() {
-    this.initDB();
+    try {
+      this.initDB();
+    } catch (err) {
+      console.error("Error initializing IndexedDB:", err);
+    }
   }
 
   private initDB(): Promise<IDBDatabase> {

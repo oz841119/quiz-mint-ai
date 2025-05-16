@@ -1,10 +1,7 @@
 "use client";
-import { Button } from "@/components/shadcn-ui/button";
-import { Plus } from "lucide-react";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { QuizCard } from "@/components/QuizCard";
 import { ExamModeSwitch } from "@/components/ExamModeSwitch";
+import { QuizCard } from "@/components/QuizCard";
+import { Button } from "@/components/shadcn-ui/button";
 import {
   Select,
   SelectContent,
@@ -14,8 +11,10 @@ import {
 } from "@/components/shadcn-ui/select";
 import { MODEL_LANGUAGES } from "@/configs/modelLanguages";
 import { MODELS } from "@/configs/models";
-import { motion, AnimatePresence } from "framer-motion";
 import { useExamsContext } from "@/contexts/examsContext";
+import { AnimatePresence, motion } from "framer-motion";
+import { Loader2, Plus } from "lucide-react";
+import { useState } from "react";
 type Quiz = {
   question: string;
   options: string[];
@@ -32,7 +31,7 @@ export default function ExamPage() {
   const [error, setError] = useState<string | null>(null);
   const [quizList, setQuizList] = useState<Quiz[] | null>(null);
   const [selectedLanguage, setSelectedLanguage] = useState("zh-TW");
-  const [selectedModel, setSelectedModel] = useState(MODELS[0].value);
+  const [selectedModel, setSelectedModel] = useState<string>(MODELS[0].value);
   const [isExamMode, setIsExamMode] = useState(false);
 
   const createQuiz = async () => {

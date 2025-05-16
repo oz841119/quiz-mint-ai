@@ -1,7 +1,11 @@
+import OpenAI from "openai";
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
-import OpenAI from "openai";
-export const createOpenAIProvider = ({ modelName, baseURL, apiKey }: { modelName: string, baseURL: string, apiKey: string }) => {
+export const createOpenAIProvider = ({
+  modelName,
+  baseURL,
+  apiKey,
+}: { modelName: string; baseURL: string; apiKey: string }) => {
   return class OpenAIProvider implements AIServiceProvider {
     modelName = modelName;
     async askQuiz({
@@ -39,6 +43,7 @@ export const createOpenAIProvider = ({ modelName, baseURL, apiKey }: { modelName
         }
         throw new Error("No quiz found");
       } catch (error) {
+        console.error(error);
         throw error;
       }
     }

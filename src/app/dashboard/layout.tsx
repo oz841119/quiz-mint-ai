@@ -1,9 +1,9 @@
 "use client";
+import { AppSidebar } from "@/components/AppSidebar";
 import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/shadcn-ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
 import { ExamProvider } from "@/contexts/examsContext";
 import { StorageProvider } from "@/contexts/storageContext";
 

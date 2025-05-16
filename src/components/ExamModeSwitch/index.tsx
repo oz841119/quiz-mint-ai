@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { BookOpen, BookOpenCheck } from "lucide-react";
 import { Button } from "../shadcn-ui/button";
-import { cn } from "@/lib/utils";
 
 interface ExamModeSwitchProps {
   isExamMode: boolean;

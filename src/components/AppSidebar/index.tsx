@@ -1,3 +1,12 @@
+import { useExamsContext } from "@/contexts/examsContext";
+import { cn } from "@/lib/utils";
+import { LayoutDashboard, Plus, User } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { AddExamDialog } from "../AddExamDialog";
+import Logo from "../Logo";
+import { Button } from "../shadcn-ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -6,15 +15,6 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
 } from "../shadcn-ui/sidebar";
-import Logo from "../Logo";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { User, Plus, LayoutDashboard } from "lucide-react";
-import { Button } from "../shadcn-ui/button";
-import { AddExamDialog } from "../AddExamDialog";
-import { useState } from "react";
-import { useExamsContext } from "@/contexts/examsContext";
 export const AppSidebar = () => {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;

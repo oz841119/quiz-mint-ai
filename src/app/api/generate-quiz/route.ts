@@ -1,25 +1,35 @@
 import { AIService } from "@/AIService";
 import { NextResponse } from "next/server";
+import { createOpenAIProvider } from "@/AIService/providers";
+import { MODELS } from "@/configs/models";
+import { z } from "zod";
+const DTOSchema = z.object({
+  examName: z.string(),
+  language: z.string(),
+  modelName: z.enum(MODELS.map((model) => model.value) as [string, ...string[]]),
+});
 export async function POST(request: Request) {
   try {
-    const { examName, language, modelName } = await request.json();
-    const aiService = new AIService({
-      modelName: modelName,
+    const { examName, language, modelName } = DTOSchema.parse(await request.json());
+    const provider = createOpenAIProvider({
+      modelName,
+      baseURL: z.string().parse(process.env.OPEN_AI_BASE_URL),
+      apiKey: z.string().parse(process.env.MODEL_KEY),
     });
-    console.log(aiService.modelName);
+    const aiService = new AIService(provider);
     const quiz = await aiService.createQuiz({
       examName,
       language,
     });
     return NextResponse.json({
-      model: aiService.modelName,
+      model: aiService.provider.modelName,
       id: crypto.randomUUID(),
       ...quiz,
     });
   } catch (error) {
     return NextResponse.json(
       {
-        error: error,
+        message: (error as Error)?.message || "Internal Server Error",
       },
       {
         status: 500,

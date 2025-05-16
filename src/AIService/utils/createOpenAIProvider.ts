@@ -1,20 +1,9 @@
 import { z } from "zod";
 import { createQuizPrompt } from "./index";
 import OpenAI from "openai";
-export const createOpenAIProvider = ({ modelName }: { modelName: string }) => {
-  return class implements AIServiceProvider {
-    public modelName = modelName;
-    private key: string;
-    constructor({
-      key = process.env.MODEL_KEY,
-    }: {
-      key?: string;
-    }) {
-      if (!key) {
-        throw new Error("MODEL_KEY is not set");
-      }
-      this.key = key;
-    }
+export const createOpenAIProvider = ({ modelName, baseURL, apiKey }: { modelName: string, baseURL: string, apiKey: string }) => {
+  return class OpenAIProvider implements AIServiceProvider {
+    modelName = modelName;
     async askQuiz({
       examName,
       language,
@@ -27,15 +16,11 @@ export const createOpenAIProvider = ({ modelName }: { modelName: string }) => {
           examName,
           language,
         });
-        const openAiClient = new OpenAI({
-          apiKey: this.key,
-          baseURL: process.env.OPEN_AI_BASE_URL,
-        });
+        const openAiClient = new OpenAI({ apiKey, baseURL });
         const response = await openAiClient.chat.completions.create({
           model: modelName,
           messages: [{ role: "user", content: prompt }],
         });
-
         if (response.choices[0].message.content) {
           const cleaned = response.choices[0].message.content
             .replace(/```json|```/g, "")
@@ -54,7 +39,6 @@ export const createOpenAIProvider = ({ modelName }: { modelName: string }) => {
         }
         throw new Error("No quiz found");
       } catch (error) {
-        console.error(error);
         throw error;
       }
     }

@@ -15,4 +15,4 @@ export const MODELS = [
     value: "gemini-2.5-pro-exp-03-25",
     label: "Gemini 2.5 Pro Exp 03-25",
   },
-];
+] as const;

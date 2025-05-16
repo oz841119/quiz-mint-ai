@@ -1,20 +1,7 @@
-import { getProvider } from "./providers";
-import type { providerMap } from "./providers/config";
 export class AIService {
-  modelName: string;
-  private provider: AIServiceProvider;
-  constructor({
-    modelName,
-    key,
-  }: {
-    modelName: keyof typeof providerMap;
-    key?: string;
-  }) {
-    const Provider = getProvider(modelName);
-    this.provider = new Provider({
-      key: key,
-    });
-    this.modelName = this.provider.modelName;
+  provider: AIServiceProvider;
+  constructor(Provider: new () => AIServiceProvider) {
+    this.provider = new Provider();
   }
   async createQuiz({
     examName,

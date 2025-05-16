@@ -57,39 +57,37 @@ yarn dev
 
 The application will be available at http://localhost:3000.
 
-### Adding New AI Models
+## Adding New Models
 
-To add a new AI model to the project:
+There are two main ways to add new AI models to Quiz Mint AI:
 
-1. Create a new file in `src/AIService/providers/` with your model name (e.g., `myModel.ts`)
-2. Implement the `AIServiceProvider` interface in your new file
-3. Add your model to the `providerMap` in `src/AIService/providerMap.ts`
-4. Add the required API key to your `.env.local` file if it is used in your provider.
+### 1. Using OpenAI-Compatible APIs
 
-Example:
+If you want to use models from APIs that are compatible with OpenAI's format (such as Google Gemini API):
+
+1. Add your model to `src/configs/models.ts`:
 ```typescript
-// src/AIService/providers/myModel.ts
-import { AIServiceProvider } from '../types';
-
-export class MyModelProvider implements AIServiceProvider {
-  // Implement required methods
-}
-
-// src/AIService/providerMap.ts
-import { MyModelProvider } from './providers/myModel';
-
-export const providerMap = {
-  // ... existing providers
-  myModel: MyModelProvider,
-};
-
-// .env.local
-MY_MODEL_API_KEY=your_api_key_here
+export const MODELS = [
+  // ... existing models
+  {
+    value: "your-model-name",
+    label: "Your Model Display Name",
+  },
+]
 ```
 
-### Using Models in Pages
+2. Update your `.env.local` file with:
+```
+OPEN_AI_BASE_URL=your_api_endpoint_url
+MODEL_KEY=your_api_key
+```
 
-To use a model in your pages:
+> **Note:** If you're using the official OpenAI API, you may not need to specify a custom `OPEN_AI_BASE_URL`. However, you will need to modify the `src/app/api/generate-quiz/route.ts` file to use the default OpenAI endpoint or handle specific model providers differently.
 
-1. Add your model to the `MODELS` constant in `src/configs/models.ts`
-2. The model will then be available in the model selection dropdown
+### 2. Custom Provider Implementation
+
+For APIs that use a different format, you can create a custom provider and inject it into the AIService:
+
+1. Implement the `AIServiceProvider` interface
+2. Update the API route in `src/app/api/generate-quiz/route.ts` to use your custom provider
+3. Add your models to the `MODELS` array in `src/configs/models.ts`

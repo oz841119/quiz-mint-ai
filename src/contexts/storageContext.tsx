@@ -1,10 +1,18 @@
-import { IndexedDBStorageService } from "@/lib/storage";
 import type { IStorageService } from "@/lib/storage";
-import { createContext, useContext } from "react";
+import { IndexedDBStorageService } from "@/lib/storage";
 import type { ReactNode } from "react";
+import { createContext, useContext } from "react";
 
 const createDefaultStorageService = (): IStorageService => {
-  return new IndexedDBStorageService();
+  if (typeof window !== "undefined") {
+    return new IndexedDBStorageService();
+  }
+  return {
+    getItem: async () => null,
+    setItem: async () => {},
+    removeItem: async () => {},
+    clear: async () => {},
+  };
 };
 
 const StorageContext = createContext<IStorageService>(
@@ -26,8 +34,6 @@ export const StorageProvider = ({
     </StorageContext.Provider>
   );
 };
-
-// Hook for using storage
 export const useStorage = (): IStorageService => {
   return useContext(StorageContext);
 };

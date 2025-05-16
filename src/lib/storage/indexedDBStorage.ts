@@ -4,13 +4,17 @@ export class IndexedDBStorageService implements IStorageService {
   private dbName = "quizMintAIStorage";
   private storeName = "keyValueStore";
   private dbPromise: Promise<IDBDatabase> | null = null;
+  private isInBrowser: boolean;
 
   constructor() {
-    this.initDB();
+    this.isInBrowser = typeof window !== "undefined" && !!window.indexedDB;
+    if (this.isInBrowser) {
+      this.initDB();
+    }
   }
 
   private initDB(): Promise<IDBDatabase> {
-    if (!this.dbPromise) {
+    if (!this.dbPromise && this.isInBrowser) {
       this.dbPromise = new Promise((resolve, reject) => {
         if (typeof window === "undefined" || !window.indexedDB) {
           reject(new Error("IndexedDB is not available in this environment"));
@@ -37,10 +41,14 @@ export class IndexedDBStorageService implements IStorageService {
         };
       });
     }
-    return this.dbPromise;
+    return (
+      this.dbPromise || Promise.reject(new Error("IndexedDB is not available"))
+    );
   }
 
   async getItem<T>(key: string): Promise<T | null> {
+    if (!this.isInBrowser) return null;
+
     try {
       const db = await this.initDB();
       return new Promise<T | null>((resolve, reject) => {
@@ -67,6 +75,8 @@ export class IndexedDBStorageService implements IStorageService {
   }
 
   async setItem<T>(key: string, value: T): Promise<void> {
+    if (!this.isInBrowser) return;
+
     try {
       const db = await this.initDB();
       return new Promise<void>((resolve, reject) => {
@@ -92,6 +102,8 @@ export class IndexedDBStorageService implements IStorageService {
   }
 
   async removeItem(key: string): Promise<void> {
+    if (!this.isInBrowser) return;
+
     try {
       const db = await this.initDB();
       return new Promise<void>((resolve, reject) => {
@@ -117,6 +129,8 @@ export class IndexedDBStorageService implements IStorageService {
   }
 
   async clear(): Promise<void> {
+    if (!this.isInBrowser) return;
+
     try {
       const db = await this.initDB();
       return new Promise<void>((resolve, reject) => {

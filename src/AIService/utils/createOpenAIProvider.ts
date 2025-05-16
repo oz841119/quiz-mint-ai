@@ -5,7 +5,7 @@ export const createOpenAIProvider = ({
   modelName,
   baseURL,
   apiKey,
-}: { modelName: string; baseURL: string; apiKey: string }) => {
+}: { modelName: string; baseURL?: string; apiKey: string }) => {
   return class OpenAIProvider implements AIServiceProvider {
     modelName = modelName;
     async askQuiz({

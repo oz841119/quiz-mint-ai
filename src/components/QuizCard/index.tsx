@@ -1,4 +1,10 @@
-import { Brain, CheckCircle2, BookOpen, BookOpenCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { BookOpen, BookOpenCheck, Brain, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { Collapser } from "../Collapser";
+import { ExamModeSwitch } from "../ExamModeSwitch";
+import { PingAnimation } from "../PingAnimation";
 import {
   Card,
   CardContent,
@@ -6,12 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../shadcn-ui/card";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Collapser } from "../Collapser";
-import { ExamModeSwitch } from "../ExamModeSwitch";
-import { PingAnimation } from "../PingAnimation";
 
 type Quiz = {
   question: string;

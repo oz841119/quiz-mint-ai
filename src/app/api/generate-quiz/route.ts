@@ -1,16 +1,20 @@
 import { AIService } from "@/AIService";
-import { NextResponse } from "next/server";
 import { createOpenAIProvider } from "@/AIService/providers";
 import { MODELS } from "@/configs/models";
+import { NextResponse } from "next/server";
 import { z } from "zod";
 const DTOSchema = z.object({
   examName: z.string(),
   language: z.string(),
-  modelName: z.enum(MODELS.map((model) => model.value) as [string, ...string[]]),
+  modelName: z.enum(
+    MODELS.map((model) => model.value) as [string, ...string[]],
+  ),
 });
 export async function POST(request: Request) {
   try {
-    const { examName, language, modelName } = DTOSchema.parse(await request.json());
+    const { examName, language, modelName } = DTOSchema.parse(
+      await request.json(),
+    );
     const provider = createOpenAIProvider({
       modelName,
       baseURL: z.string().parse(process.env.OPEN_AI_BASE_URL),

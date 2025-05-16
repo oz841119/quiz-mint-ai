@@ -1,17 +1,17 @@
 "use client";
 
 import { useExamsContext } from "@/contexts/examsContext";
-import { Button } from "../shadcn-ui/button";
-import { Trash2, Plus } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { AddExamDialog } from "../AddExamDialog";
+import { Button } from "../shadcn-ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "../shadcn-ui/dialog";
-import { AddExamDialog } from "../AddExamDialog";
 
 export const ExamManager = () => {
   const { exams, addExam, removeExam, isLoading } = useExamsContext();

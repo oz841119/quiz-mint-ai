@@ -7,13 +7,14 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["shadcn-ui"]
+    "ignore": ["shadcn-ui", "node_modules", "dist", ".next"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "lineWidth": 80,
-    "indentWidth": 2
+    "indentWidth": 2,
+    "lineEnding": "crlf"
   },
   "organizeImports": {
     "enabled": true

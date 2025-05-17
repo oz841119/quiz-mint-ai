@@ -23,10 +23,10 @@ export default function RootLayout({
     <html lang="zh">
       <body className={inter.className}>{children}</body>
       {process.env.NEXT_PUBLIC_GA_ID && (
-        <>
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID} />
-        </>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
       )}
     </html>
   );

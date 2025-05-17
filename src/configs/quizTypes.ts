@@ -1,11 +1,11 @@
 export const QUIZ_TYPES = [
   {
     value: "single-choice",
-    label: "單選題",
+    label: "Single Choice",
   },
   {
     value: "multiple-choice",
-    label: "複選題",
+    label: "Multiple Choice",
   },
 ] as const;
 

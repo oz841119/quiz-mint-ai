@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { z } from "zod";
+import type { AIServiceProvider, Quiz } from "../types";
 import { createQuizPrompt } from "./index";
 export const createOpenAIProvider = ({
   modelName,
@@ -11,14 +12,17 @@ export const createOpenAIProvider = ({
     async askQuiz({
       examName,
       language,
+      quizTypes,
     }: {
       examName: string;
       language: string;
+      quizTypes: string[];
     }): Promise<Quiz | null> {
       try {
         const prompt = createQuizPrompt({
           examName,
           language,
+          quizTypes,
         });
         const openAiClient = new OpenAI({ apiKey, baseURL });
         const response = await openAiClient.chat.completions.create({
@@ -37,6 +41,7 @@ export const createOpenAIProvider = ({
               answers: z.array(z.number()),
               explanation: z.string(),
               language: z.string(),
+              quizType: z.string(),
             })
             .parse(quizText);
           return quiz;

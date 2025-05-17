@@ -1,21 +1,28 @@
 export const createQuizPrompt = ({
   examName,
   language,
+  quizTypes,
 }: {
   examName: string;
   language: string;
+  quizTypes: string[];
 }) => {
   return `
-    Please generate 1 realistic multiple-choice question about ${examName}, similar in style and difficulty to actual exam questions or past exam papers.
-    The question can be either single-choice (with only one correct answer) or multiple-choice (with multiple correct answers).
-    Each option must begin with a prefix like "A.", "B.", "C.", etc.
+    Please generate 1 realistic question about ${examName}, similar in style and difficulty to actual exam questions or past exam papers.
+    The question should be one of the following types: ${quizTypes.join(", ")}.
+    For multiple-choice questions, each option must begin with a prefix like "A.", "B.", "C.", etc.
+    Important: The number of correct answers must match the question type:
+    - For single-choice questions, provide exactly one correct answer
+    - For multiple-choice questions, provide two or more correct answers
+    - Do not generate questions that don't match the specified types
     Return it in the following JSON format:
     {
       question: Question content,
       options: Array of options (each option must start with a prefix like "A.", "B.", etc.),
       answers: Index(es) of the correct option(s) — for single-choice questions, provide a single index; for multiple-choice questions, provide an array of indices,
-      explanation: Explanation of the correct answer(s), including why they are correct and why other options are incorrect.
-      language: Language
+      explanation: Explanation of the correct answer(s), including why they are correct and why other options are incorrect,
+      language: Language,
+      quizType: The type of question (one of the specified quizTypes)
     }。
     Please use ${language},
     ensure that the answers field is always an array,

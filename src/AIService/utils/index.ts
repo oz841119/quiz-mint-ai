@@ -1,3 +1,4 @@
+export * from "./createOpenAIProvider";
 export const createQuizPrompt = ({
   examName,
   language,
@@ -13,7 +14,7 @@ export const createQuizPrompt = ({
     For multiple-choice questions, each option must begin with a prefix like "A.", "B.", "C.", etc.
     Important: The number of correct answers must match the question type:
     - For single-choice questions, provide exactly one correct answer
-    - For multiple-choice questions, provide two or more correct answers
+    - For multiple-choice questions, provide two or more correct answers, and make sure the question description explicitly states the exact number of correct answers required (e.g., "Select TWO correct answers" or "Choose THREE correct options")
     - Do not generate questions that don't match the specified types
     Return it in the following JSON format:
     {

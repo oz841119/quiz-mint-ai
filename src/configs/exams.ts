@@ -60,10 +60,4 @@ export const EXAMS = [
     pageLabel: "Azure Administrator Associate",
     menuLabel: "Azure Administrator Associate",
   },
-  {
-    name: "丙級門市服務技術士",
-    routeParam: "retail-services",
-    pageLabel: "丙級門市服務技術士",
-    menuLabel: "丙級門市服務技術士",
-  },
 ];

@@ -62,10 +62,10 @@ export default function ExamPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-4">
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
         <Select value={selectedModel} onValueChange={setSelectedModel}>
-          <SelectTrigger className="w-80 cursor-pointer">
+          <SelectTrigger className="w-full md:w-80 cursor-pointer">
             <SelectValue placeholder="Select Model" />
           </SelectTrigger>
           <SelectContent>
@@ -81,7 +81,7 @@ export default function ExamPage() {
           </SelectContent>
         </Select>
         <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-          <SelectTrigger className="w-48 cursor-pointer">
+          <SelectTrigger className="w-full md:w-48 cursor-pointer">
             <SelectValue placeholder="Select Language" />
           </SelectTrigger>
           <SelectContent>
@@ -96,26 +96,28 @@ export default function ExamPage() {
             ))}
           </SelectContent>
         </Select>
-        <ExamModeSwitch
-          isExamMode={isExamMode}
-          onToggle={() => setIsExamMode(!isExamMode)}
-        />
-        <Button
-          onClick={createQuiz}
-          size="sm"
-          className="cursor-pointer"
-          disabled={loading}
-        >
-          {loading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Plus className="h-4 w-4" />
-          )}
-          Create Quiz
-        </Button>
+        <div className="flex items-center gap-3 w-full md:w-auto">
+          <ExamModeSwitch
+            isExamMode={isExamMode}
+            onToggle={() => setIsExamMode(!isExamMode)}
+          />
+          <Button
+            onClick={createQuiz}
+            size="sm"
+            className="cursor-pointer flex-1 md:flex-none"
+            disabled={loading}
+          >
+            {loading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Plus className="h-4 w-4" />
+            )}
+            Create Quiz
+          </Button>
+        </div>
       </div>
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+        <div className="bg-red-50 border border-red-200 text-red-600 px-3 md:px-4 py-2 md:py-3 rounded-md text-sm">
           {error}
         </div>
       )}

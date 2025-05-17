@@ -8,7 +8,7 @@ export default function ExamLayout({
   const { exam } = useExamsContext();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">{exam?.pageLabel}</h1>
+      <h1 className="md:text-2xl font-bold mb-4">{exam?.pageLabel}</h1>
       {children}
     </div>
   );

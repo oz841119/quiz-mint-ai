@@ -11,18 +11,21 @@ export default function Home() {
         <div className="absolute inset-0 bg-purple-200 [clip-path:polygon(100%_0,100%_100%,0_100%)]" />
       </div>
 
+      <div className="lg:hidden self-center z-0 py-2 px-4 absolute top-0 left-0 w-full">
+        <Logo className="scale-70 origin-left" />
+      </div>
+
       {/* Hero Section - Full Screen */}
-      <div className="relative flex-1 flex items-center z-10 py-8 md:py-12">
+      <div className="relative flex-1 flex z-10 py-8 md:py-12 justify-center flex-col lg:flex-row lg:items-center">
         {/* Background decoration */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-300 opacity-30 blur-3xl" />
           <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-purple-300 opacity-30 blur-3xl" />
         </div>
-
         <section className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
             <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
-              <div className="mb-4 md:mb-6">
+              <div className="mb-4 md:mb-6 hidden lg:block">
                 <Logo className="mx-auto lg:mx-0 transform scale-90 sm:scale-100" />
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
@@ -33,13 +36,15 @@ export default function Home() {
                   AI-powered quizzes to enhance learning efficiency
                 </p>
                 <div className="text-sm sm:text-md text-gray-600 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-1 justify-center lg:justify-start max-w-xl sm:max-w-2xl mx-auto lg:mx-0 mt-3">
-                  <span className="flex items-center">
-                    <span className="mr-1 sm:mr-2 text-blue-600">🌐</span>{" "}
-                    Multilingual Support
+                  <span>
+                    <span className="mr-1 sm:mr-2 text-blue-600">🌐</span>
+                    <span>Multilingual Support</span>
                   </span>
-                  <span className="flex items-center">
-                    <span className="mr-1 sm:mr-2 text-purple-600">🤖</span>{" "}
-                    AI-Generated Questions, Answers & Explanations
+                  <span>
+                    <span className="mr-1 sm:mr-2 text-purple-600">🤖</span>
+                    <span>
+                      AI-Generated Questions, Answers and Explanations
+                    </span>
                   </span>
                 </div>
               </div>

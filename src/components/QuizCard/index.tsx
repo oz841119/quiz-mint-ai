@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { BookOpen, BookOpenCheck, Brain, CheckCircle2 } from "lucide-react";
+import { Brain, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { Collapser } from "../Collapser";
 import { ExamModeSwitch } from "../ExamModeSwitch";
@@ -46,9 +46,6 @@ export const QuizCard = ({
               {quiz.question}
             </CardTitle>
           </div>
-          <CardDescription className="text-xs text-gray-500 whitespace-nowrap">
-            {quiz.model}
-          </CardDescription>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -90,7 +87,10 @@ export const QuizCard = ({
             </p>
           </div>
         </Collapser>
-        <div className="flex justify-end pt-2 border-t relative">
+        <div className="flex justify-end pt-2 border-t relative items-center gap-2">
+          <CardDescription className="text-xs text-gray-500 whitespace-nowrap">
+            {quiz.model}
+          </CardDescription>
           <ExamModeSwitch
             isExamMode={isExamMode}
             onToggle={() => setIsExamMode(!isExamMode)}

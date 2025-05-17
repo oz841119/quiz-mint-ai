@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -23,7 +23,10 @@ export default function RootLayout({
     <html lang="zh">
       <body className={inter.className}>{children}</body>
       {process.env.NEXT_PUBLIC_GA_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <>
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID} />
+        </>
       )}
     </html>
   );

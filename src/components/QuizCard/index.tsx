@@ -41,7 +41,7 @@ export const QuizCard = ({
       <CardHeader className="pb-2">
         <div className="flex justify-between gap-2">
           <div className="flex gap-2 items-center">
-            <Brain className="h-5 w-5 text-blue-500" />
+            <Brain className="h-5 w-5 text-blue-500 hidden md:block" />
             <CardTitle className="text-sm text-gray-700 leading-relaxed flex-1">
               {quiz.question}
             </CardTitle>

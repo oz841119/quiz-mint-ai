@@ -14,6 +14,7 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
+  useSidebar,
 } from "../shadcn-ui/sidebar";
 export const AppSidebar = () => {
   const pathname = usePathname();
@@ -30,6 +31,7 @@ export const AppSidebar = () => {
       menuLabel: exam.name,
     });
   };
+  const { setOpenMobile: setOpenMobileSidebar } = useSidebar();
   return (
     <>
       <Sidebar>
@@ -93,6 +95,7 @@ export const AppSidebar = () => {
                   <Link
                     href={`/dashboard/exam/${exam.routeParam}`}
                     className="block py-2"
+                    onClick={() => setOpenMobileSidebar(false)}
                   >
                     {exam.menuLabel}
                   </Link>

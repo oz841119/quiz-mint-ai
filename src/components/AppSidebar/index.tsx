@@ -1,6 +1,6 @@
 import { useExamsContext } from "@/contexts/examsContext";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Plus, User } from "lucide-react";
+import { LayoutDashboard, Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -10,7 +10,6 @@ import { Button } from "../shadcn-ui/button";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -104,7 +103,7 @@ export const AppSidebar = () => {
             </ul>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter className="border-t">
+        {/* <SidebarFooter className="border-t">
           <div className="flex items-center gap-3 px-4 py-3">
             <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center">
               <User className="w-4 h-4" />
@@ -116,7 +115,7 @@ export const AppSidebar = () => {
               </p>
             </div>
           </div>
-        </SidebarFooter>
+        </SidebarFooter> */}
       </Sidebar>
       <AddExamDialog
         isOpen={isAddExamDialogOpen}

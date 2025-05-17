@@ -45,7 +45,7 @@ export default function Home() {
               </div>
               <div className="flex justify-center lg:justify-start">
                 <Link
-                  href="/dashboard/exam"
+                  href="/dashboard"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-blue-300/50 w-full sm:w-auto max-w-xs mx-auto sm:mx-0"
                 >
                   Get Started
@@ -70,9 +70,9 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="container mx-auto px-4 py-3 sm:py-4 text-center text-gray-600 text-xs relative z-10">
+      {/* <footer className="container mx-auto px-4 py-3 sm:py-4 text-center text-gray-600 text-xs relative z-10">
         <p>© {new Date().getFullYear()} Quiz Mint AI. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </main>
   );
 }

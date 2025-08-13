@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive areas
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://quiz-mint-ai.peasify.app/sitemap.xml
+
+# Crawl delay for bots
+Crawl-delay: 1

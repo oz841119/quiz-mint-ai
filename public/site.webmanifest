@@ -1,0 +1,25 @@
+{
+  "name": "Quiz Mint AI - Intelligent Quiz Generator",
+  "short_name": "Quiz Mint AI",
+  "description": "AI-powered quiz generator for personalized learning and professional certification exam preparation",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "productivity", "utilities"],
+  "orientation": "portrait-primary"
+}

@@ -1,4 +1,10 @@
 import { ExamManager } from "@/components/ExamManager";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard | Quiz Mint AI",
+  description: "Manage your exams and track your progress with Quiz Mint AI dashboard.",
+};
 
 export default function DashboardPage() {
   return (

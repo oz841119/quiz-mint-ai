@@ -1,3 +1,4 @@
+import { EXAMS } from "@/configs/exams";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,21 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Exam pages - these would be dynamic based on your exams config
-  const examRoutes = [
-    "saac03",
-    "sapc02",
-    "google-ads-search-certification",
-    "gaiq",
-    "pc4h342411",
-    "1z0829",
-    "cka",
-    "ckad",
-    "az-305",
-  ];
-
-  const examPages = examRoutes.map((exam) => ({
-    url: `${baseUrl}/dashboard/exam/${exam}`,
+  // Exam pages - dynamic based on exams config
+  const examPages = EXAMS.map((exam) => ({
+    url: `${baseUrl}/dashboard/exam/${exam.routeParam}`,
     lastModified: new Date(),
     changeFrequency: "daily" as const,
     priority: 0.7,

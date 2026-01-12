@@ -1,11 +1,50 @@
-"use client";
-import { useExamsContext } from "@/contexts/examsContext";
-export default function ExamLayout({
-  children,
+import { EXAMS } from "@/configs/exams";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+type Props = {
+  children: ReactNode;
+  params: Promise<{ examName: string }>;
+};
+
+export async function generateMetadata({
+  params,
 }: {
-  children: React.ReactNode;
-}) {
-  const { exam } = useExamsContext();
+  params: Promise<{ examName: string }>;
+}): Promise<Metadata> {
+  const { examName } = await params;
+  const exam = EXAMS.find((e) => e.routeParam === examName);
+
+  if (!exam) {
+    return {
+      title: "Exam Not Found | Quiz Mint AI",
+    };
+  }
+
+  return {
+    title: `${exam.pageLabel} Practice Quiz | Quiz Mint AI`,
+    description: `Free AI-powered practice questions and quizzes for ${exam.name}. Prepare for your ${exam.menuLabel} exam with our intelligent quiz generator. Unlimited practice questions with detailed explanations.`,
+    keywords: [
+      exam.name,
+      exam.menuLabel,
+      "practice exam",
+      "quiz generator",
+      "certification",
+      "AI questions",
+      "mock test",
+    ],
+    openGraph: {
+      title: `${exam.pageLabel} Practice Quiz | Quiz Mint AI`,
+      description: `Free AI-powered practice questions for ${exam.name}. Prepare effectively with our intelligent quiz generator.`,
+      type: "website",
+    },
+  };
+}
+
+export default async function ExamLayout({ children, params }: Props) {
+  const { examName } = await params;
+  const exam = EXAMS.find((e) => e.routeParam === examName);
+
   return (
     <div>
       <h1 className="md:text-2xl font-bold mb-4">{exam?.pageLabel}</h1>

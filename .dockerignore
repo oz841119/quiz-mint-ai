@@ -1,15 +1,59 @@
+# 依賴
 node_modules
-.next
-.git
-.gitignore
-.env*
-!.env.example
-.DS_Store
-*.pem
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.idea
+
+# Next.js
+.next
+out
+dist
+
+# 環境變數文件
+.env*.local
+.env.development
+.env.test
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
 .vscode
+.idea
 *.swp
-*.swo 
+*.swo
+*~
+
+# 測試
+coverage
+.nyc_output
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# 其他
+README.md
+.prettierrc
+.eslintrc
+.editorconfig
+*.md
+
+# MacOS
+.DS_Store
+
+# 日誌
+logs
+*.log
+
+# TypeScript
+*.tsbuildinfo
+
+# 臨時文件
+tmp
+temp
+.tmp
+.temp

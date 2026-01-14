@@ -57,6 +57,25 @@ yarn dev
 
 The application will be available at http://localhost:3000.
 
+## Production Deployment
+
+Deploy to Ubuntu VPS with Docker:
+
+```bash
+# 1. Configure environment variables
+cp env.production.example .env.production
+nano .env.production  # Fill in your API keys
+
+# 2. Build and deploy
+docker-compose -f docker-compose.prod.yml up -d --build
+
+# 3. Check status
+docker-compose -f docker-compose.prod.yml ps
+
+# 4. View logs
+docker-compose -f docker-compose.prod.yml logs -f
+```
+
 ## Adding New Models
 
 There are two main ways to add new AI models to Quiz Mint AI:
